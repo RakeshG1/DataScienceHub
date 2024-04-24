@@ -1,6 +1,11 @@
 pandas
 matplotlib
 seaborn
+Jinja2 # Dependency for df.corr()
 scikit-learn
+statsmodels
+lime
+pymannkendall
+tsfresh
 ipython
 ipykernel
