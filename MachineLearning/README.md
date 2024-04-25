@@ -54,3 +54,47 @@ Extracting patterns from unlabeled data, enabling automatic discovery of hidden 
 ### Anomaly-Detection
 
 It helps in unveiling of unusual patterns in data, vital for fraud detection, fault diagnosis, and uncovering outliers, enhancing data integrity and decision-making processes.
+
+
+## <span style='color:orange'> Timeseries </span>
+
+Time series forecasting is a branch of predictive analytics that focuses on predicting future values of a variable based on its past values, often represented as a sequence of data points collected at successive, equally spaced time intervals. In simpler terms, it involves using historical data to make predictions about future values of a time-dependent variable.
+
+- Methods and Models:
+
+    Various methods and models are used for time series forecasting, including:
+
+    - **Statistical Methods**: These include simple methods like moving averages and exponential smoothing, as well as more complex models like ARIMA (Autoregressive Integrated Moving Average) and seasonal decomposition.
+    - **Machine Learning Techniques**: Machine learning algorithms such as neural networks, support vector machines, and random forests can also be used for time series forecasting.
+    - **Deep Learning**: Deep learning models like recurrent neural networks (RNNs) and Long Short-Term Memory (LSTM) networks are particularly effective for capturing complex temporal dependencies in time series data.
+
+### Timeseries Smoothing
+
+Time series smoothing is a technique used to remove noise or fluctuations from a time series data while preserving the underlying trends or patterns. It involves applying a mathematical filter or algorithm to the data to create a smoother representation.
+
+Use Cases
+
+- **Noise Reduction**: Smoothing helps to filter out random fluctuations or noise in the data, making it easier to identify underlying trends or patterns.
+- **Trend Identification**: By removing short-term fluctuations, smoothing techniques make it easier to identify long-term trends or cycles in the data.
+- **Data Visualization**: Smoothed time series plots provide a clearer and more interpretable representation of the data, facilitating visual analysis and decision-making.
+- **Forecasting**: Smoothing can improve the accuracy of forecasting models by providing a cleaner input dataset with reduced noise.
+- **Data Preprocessing**: Smoothing is often used as a preprocessing step before applying more complex time series analysis or forecasting techniques.
+- **Anomaly Detection**: Smoothing helps to highlight anomalies or unusual patterns in the data by removing normal fluctuations, making it easier to detect outliers.
+
+`Moving Average`
+
+- **Definition**: Moving average is a simple smoothing technique that calculates the average of a sliding window of data points across the time series.
+- **Usage**: It is effective for filtering out short-term fluctuations or noise in the data while preserving long-term trends.
+
+```text
+yt = 1/n (sum i->n (yti+1))
+```
+
+`Loess (Locally Weighted Scatterplot Smoothing)`
+
+- **Definition**: Loess smoothing is a non-parametric technique that fits a curve to the data by locally weighted regression, assigning higher weights to nearby points and lower weights to distant points.
+- **Usage**: It is effective for capturing complex patterns and relationships in the data, especially when there are nonlinear trends or seasonal variations.
+
+```text
+yt = ß0 + ß1x1 + et
+```
