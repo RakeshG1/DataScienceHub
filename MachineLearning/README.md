@@ -55,6 +55,27 @@ Extracting patterns from unlabeled data, enabling automatic discovery of hidden 
 
 It helps in unveiling of unusual patterns in data, vital for fraud detection, fault diagnosis, and uncovering outliers, enhancing data integrity and decision-making processes.
 
+#### 3 Sigma/Stdev Deviation Method
+
+This method identifies outliers based on their deviation from the mean. Data points that are a certain number of standard deviations i.e., 3(in most cases) away from the mean are considered outliers.
+
+Assumption: Assumes data follows a normal distribution.
+
+#### IQR Method
+
+This method uses the Interquartile Range (IQR) to identify outliers. Data points beyond a certain range from the first and third quartiles are considered outliers.
+
+IQR tells us about the variability of the middle 50% of the data: Unlike measures like the range or standard deviation, which consider all data points, the IQR focuses on the central portion of the data distribution. It provides information about how the values are spread out around the median.
+Identifying potential outliers: By using the IQR, one can identify potential outliers in the dataset. Typically, data points that fall below Q1 - 1.5 * IQR or above Q3 + 1.5 * IQR are considered outliers and may warrant further investigation.
+
+Assumptions: No assumptions about the data distribution are made.
+
+#### DBSCAN
+
+Density-Based Spatial Clustering of Applications with Noise (DBSCAN) is a clustering algorithm that can also be used for outlier detection. It identifies outliers as points that are in low-density regions.
+
+Assumptions: Assumes data points form clusters and outliers are isolated points.
+
 
 ## <span style='color:orange'> Timeseries </span>
 
