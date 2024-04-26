@@ -55,11 +55,28 @@ Extracting patterns from unlabeled data, enabling automatic discovery of hidden 
 
 It helps in unveiling of unusual patterns in data, vital for fraud detection, fault diagnosis, and uncovering outliers, enhancing data integrity and decision-making processes.
 
-#### 3 Sigma/Stdev Deviation Method
+#### 3 Sigma/Standard Deviation (or) 3 Z-score Method
 
-This method identifies outliers based on their deviation from the mean. Data points that are a certain number of standard deviations i.e., 3(in most cases) away from the mean are considered outliers.
 
-Assumption: Assumes data follows a normal distribution.
+**Sigma/Standard Deviation**: This method identifies outliers based on their deviation from the mean. Data points that are a certain number of standard deviations i.e., 3(in most cases) away from the mean are considered outliers.
+
+```text
+anomaly <= if abs(x - mean) > stdev*3
+```
+
+**Z-score**: It's a statistical measure that tells you how many standard deviations a specific point is away from the mean (average) of the data. We calculate the Z-score by subtracting the mean (μ) from a data point (x) and then dividing by the standard deviation (σ).
+
+```text
+Z-score = (x - μ) / σ.
+
+A Z-score of 0 indicates the data point is exactly at the mean. Positive Z-scores represent values above the mean, and negative Z-scores represent values below the mean.
+
+anomaly <= if abs(z-score) > z-score*3 
+```
+
+In other words, that 3 sigma rule suggests that most data points (around 99.7%) will have Z-scores within ±3 (positive or negative). Data points with Z-scores outside this range (absolute value greater than 3) are considered potential anomalies because they deviate significantly from the typical pattern.
+
+Assumption: Both above method assumes data follows a normal distribution. As Sigma / Z-score are based on normal distribution.
 
 #### IQR Method
 
