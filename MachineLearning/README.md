@@ -47,6 +47,53 @@ Supervised learning is a machine learning paradigm where the algorithm learns fr
 
     Meeting these expectations helps ensure that the linear regression model provides reliable and interpretable results. Violations of these assumptions may lead to biased estimates and inaccurate predictions. Therefore, it's essential to assess and address any violations before interpreting the results of a linear regression model.
 
+### Classification
+
+- **`Naive Bayes`**
+    - Naive Bayes is a classification algorithm used for predicting the class (or category) of something based on a set of features (predictors). It works using the principles of probability, specifically Bayes' theorem.
+    - `Classification Task`
+        - Imagine you want to classify emails as spam or not spam. The "spam" and "not spam" are the classes, and features could be words appearing in the email, sender information, etc.
+    - `Bayes Theorem`
+        - Naive Bayes leverages Bayes' theorem, which allows us to calculate the probability of an event (email being spam) given some evidence (words in the email).
+    - `Naive Assumption`
+        - The key concept in Naive Bayes is the assumption of independence between features. This means it assumes features don't influence each other (e.g., the appearance of the word "money" doesn't affect the influence of the word "urgent"). While this might not always be true in reality, it simplifies the calculations.
+    - `MultinomialNB and GaussianNB`: These are specific implementations of Naive Bayes designed for different data types
+        - **MultinomialNB**: Suitable for discrete features (data with limited categories) and often used for count data. It uses the multinomial distribution to model the probability of features given a class.
+            - Refers to the multinomial distribution, which is a probability distribution for discrete outcomes with a fixed number of possibilities (like categories in text classification).
+            - Data type: Discrete (often count data)
+            - Usage: Classifying text (spam/not spam), sentiment analysis
+            - `The multinomial distribution concept provides a powerful tool for modeling and analyzing scenarios with discrete outcomes in various Machine Learning applications`.
+                - Text Classification: Classifying documents into categories (sports, politics, etc.) based on word frequencies. Here, the categories are the classes (sports, politics), and the trials are word occurrences in the document.
+        - **GaussianNB**: Suitable for continuous features (numerical data that can take any value within a range). It assumes features follow a Gaussian (normal) distribution.
+            - Data type: Continuous
+            - Classification: Involves predicting discrete categories (e.g., spam/not spam email, cat/dog image).
+            - GaussianNB Assumptions: Assumes features (data points) for each class follow a Gaussian (normal) distribution. This means the data for each class tends to cluster around a central value with a bell-shaped curve.
+            - Predictions: Based on these assumptions, GaussianNB calculates the probability of a new data point belonging to each class and assigns it to the class with the highest probability.
+            - `GaussianNB cannot directly model the continuous relationship between features and the target variable.`
+    - `Pros`
+        - Simple to understand and implement.
+        - Efficient for large datasets.
+        - Performs well even with limited data compared to some other algorithms.
+    - `Cons`
+        - The assumption of feature independence can be unrealistic in some cases.
+        - Sensitive to irrelevant features.
+
+Below mathematical formula is core concept behind the Naive Bayes pricipal for both MultinomialNB and GaussianNB classifiers.
+
+```md
+Prior Probability => `(P(Play = yes))`
+This is general chance of playing_tennis[yes] on any given day (regardless of weather evidence/condition)
+
+Likelihood => `(P(Evidence/Condition | Play = yes))`
+Chance of having the specific weather i.e., (sunny, hot, high humidity, no wind) given that someone will playing_tennis[yes].
+
+
+Predict probability => `P(Play = yes | Evidence) = [Prior Probability] * [Likelihood]`
+Predict probability of playing_tennis[yes] on given weather condition
+```
+
+In essence, Naive Bayes is a powerful and versatile classification algorithm that leverages probability for effective predictions. While its assumptions might not always hold perfectly, it often provides good results and is a popular choice for various classification tasks.
+
 ## <span style='color:orange'> Unsupervised Learning </span>
 
 Extracting patterns from unlabeled data, enabling automatic discovery of hidden structures without explicit guidance. Essential for clustering, dimensionality reduction, and anomaly detection in diverse datasets.
@@ -94,7 +141,7 @@ Density-Based Spatial Clustering of Applications with Noise (DBSCAN) is a cluste
 Assumptions: Assumes data points form clusters and outliers are isolated points.
 
 
-## <span style='color:orange'> Timeseries </span>
+## <span style='color:orange'> Forecasting </span>
 
 Time series forecasting is a branch of predictive analytics that focuses on predicting future values of a variable based on its past values, often represented as a sequence of data points collected at successive, equally spaced time intervals. In simpler terms, it involves using historical data to make predictions about future values of a time-dependent variable.
 
