@@ -51,32 +51,48 @@ Supervised learning is a machine learning paradigm where the algorithm learns fr
 
 - **`Naive Bayes`**
     - Naive Bayes is a classification algorithm used for predicting the class (or category) of something based on a set of features (predictors). It works using the principles of probability, specifically Bayes' theorem.
-    - `Classification Task`
-        - Imagine you want to classify emails as spam or not spam. The "spam" and "not spam" are the classes, and features could be words appearing in the email, sender information, etc.
-    - `Bayes Theorem`
-        - Naive Bayes leverages Bayes' theorem, which allows us to calculate the probability of an event (email being spam) given some evidence (words in the email).
-    - `Naive Assumption`
-        - The key concept in Naive Bayes is the assumption of independence between features. This means it assumes features don't influence each other (e.g., the appearance of the word "money" doesn't affect the influence of the word "urgent"). While this might not always be true in reality, it simplifies the calculations.
-    - `MultinomialNB and GaussianNB`: These are specific implementations of Naive Bayes designed for different data types
-        - **MultinomialNB**: Suitable for discrete features (data with limited categories) and often used for count data. It uses the multinomial distribution to model the probability of features given a class.
-            - Refers to the multinomial distribution, which is a probability distribution for discrete outcomes with a fixed number of possibilities (like categories in text classification).
-            - Data type: Discrete (often count data)
-            - Usage: Classifying text (spam/not spam), sentiment analysis
-            - `The multinomial distribution concept provides a powerful tool for modeling and analyzing scenarios with discrete outcomes in various Machine Learning applications`.
-                - Text Classification: Classifying documents into categories (sports, politics, etc.) based on word frequencies. Here, the categories are the classes (sports, politics), and the trials are word occurrences in the document.
-        - **GaussianNB**: Suitable for continuous features (numerical data that can take any value within a range). It assumes features follow a Gaussian (normal) distribution.
-            - Data type: Continuous
-            - Classification: Involves predicting discrete categories (e.g., spam/not spam email, cat/dog image).
-            - GaussianNB Assumptions: Assumes features (data points) for each class follow a Gaussian (normal) distribution. This means the data for each class tends to cluster around a central value with a bell-shaped curve.
-            - Predictions: Based on these assumptions, GaussianNB calculates the probability of a new data point belonging to each class and assigns it to the class with the highest probability.
-            - `GaussianNB cannot directly model the continuous relationship between features and the target variable.`
-    - `Pros`
-        - Simple to understand and implement.
-        - Efficient for large datasets.
-        - Performs well even with limited data compared to some other algorithms.
-    - `Cons`
-        - The assumption of feature independence can be unrealistic in some cases.
-        - Sensitive to irrelevant features.
+- ``Classification Task``
+    - Imagine you want to classify emails as spam or not spam. The "spam" and "not spam" are the classes, and features could be words appearing in the email, sender information, etc.
+- `Bayes Theorem`
+    - It is a fundamental concept in probability theory and statistics. It deals with conditional probability, which is the likelihood of an event occurring given that another event has already happened.
+    - Understanding Bayes' theorem empowers you to make informed decisions by considering both prior knowledge.
+    - Machine learning: Used in spam filtering, image recognition, medical diagnosis, and other classification tasks.
+    - Risk assessment: Helps calculate the probability of an event happening based on historical data and new information.
+
+```text
+Formula:
+
+P(A | B) = ( P(B | A) * P(A) ) / P(B)
+
+where:
+
+P(A | B) is the posterior probability of event A occurring, given that event B has already happened. This is what we're trying to calculate.
+P(B | A) is the likelihood of event B occurring, given that event A is true.
+P(A) is the prior probability of event A occurring, independent of any other event. This is our initial belief about how likely A is to happen.
+P(B) is the total probability of event B occurring, regardless of A.
+```
+- `Naive Assumption`
+    - The key concept in Naive Bayes is the assumption of independence between features. This means it assumes features don't influence each other (e.g., the appearance of the word "money" doesn't affect the influence of the word "urgent"). While this might not always be true in reality, it simplifies the calculations.
+- `MultinomialNB and GaussianNB`: These are specific implementations of Naive Bayes designed for different data types
+    - **MultinomialNB**: Suitable for discrete features (data with limited categories) and often used for count data. It uses the multinomial distribution to model the probability of features given a class.
+        - Refers to the multinomial distribution, which helps us to understand what is a probability distribution for discrete outcomes with a fixed number of possibilities (like categories in text classification).
+        - Data type: Discrete (often count data)
+        - Usage: Classifying text (spam/not spam), sentiment analysis
+        - `The multinomial distribution concept provides a powerful tool for modeling and analyzing scenarios with discrete outcomes in various Machine Learning applications`.
+            - Text Classification: Classifying documents into categories (sports, politics, etc.) based on word frequencies. Here, the categories are the classes (sports, politics), and the trials are word occurrences in the document.
+    - **GaussianNB**: Suitable for continuous features (numerical data that can take any value within a range). It assumes features follow a Gaussian (normal) distribution.
+        - Data type: Continuous
+        - Classification: Involves predicting discrete categories (e.g., spam/not spam email, cat/dog image).
+        - GaussianNB Assumptions: Assumes features (data points) for each class follow a Gaussian (normal) distribution. This means the data for each class tends to cluster around a central value with a bell-shaped curve.
+        - Predictions: Based on these assumptions, GaussianNB calculates the probability of a new data point belonging to each class and assigns it to the class with the highest probability.
+        - `GaussianNB cannot directly model the continuous relationship between features and the target variable.`
+- `Pros`
+    - Simple to understand and implement.
+    - Efficient for large datasets.
+    - Performs well even with limited data compared to some other algorithms.
+- `Cons`
+    - The assumption of feature independence can be unrealistic in some cases.
+    - Sensitive to irrelevant features.
 
 Below mathematical formula is core concept behind the Naive Bayes pricipal for both MultinomialNB and GaussianNB classifiers.
 
