@@ -8,7 +8,7 @@ Supervised learning is a machine learning paradigm where the algorithm learns fr
 
 ### Regression
 
-- **`Simple / Multiple Linear Regression`**
+#### Simple / Multiple Linear Regression
 
     - In linear regression, we assume that the relationship between the dependent variables and the independent variables is linear.
     - Mathematically, this relationship can be represented as: `y = β0 + β1x + β2x + ε`(This equation represents simple linear regression) or `y = mx + c` (This equation represents the equation of a straight line in Cartesian coordinates used in geometry to describe the relationship between x and y in a plane).
@@ -49,7 +49,7 @@ Supervised learning is a machine learning paradigm where the algorithm learns fr
 
 ### Classification
 
-- **`Naive Bayes`**
+#### Naive Bayes
     - Naive Bayes is a classification algorithm used for predicting the class (or category) of something based on a set of features (predictors). It works using the principles of probability, specifically Bayes' theorem.
 - ``Classification Task``
     - Imagine you want to classify emails as spam or not spam. The "spam" and "not spam" are the classes, and features could be words appearing in the email, sender information, etc.
@@ -109,6 +109,102 @@ Predict probability of playing_tennis[yes] on given weather condition
 ```
 
 In essence, Naive Bayes is a powerful and versatile classification algorithm that leverages probability for effective predictions. While its assumptions might not always hold perfectly, it often provides good results and is a popular choice for various classification tasks.
+
+#### Decision Tree
+
+A Decision Tree classifier is a powerful machine learning algorithm used for classification tasks. It works by building a tree-like model that splits the data based on features (attributes) to predict a target variable (class label).
+
+Idealogy
+
+``Features``: The characteristics used for prediction (e.g., Outlook, Temperature, Humidity, Wind).
+
+``Target Variable``: The category you're trying to predict (e.g., Play Tennis: Yes/No).
+
+``Splitting``: At each node of the tree, the data is split based on a feature value that best separates the data points belonging to different classes.
+
+``Information gain``:
+
+```
+Information Gain(S, A) = Entropy(S) - Σ [ |S_v| / |S| * Entropy(S_v) ]
+
+S: Represents the entire dataset (all samples) for which you want to calculate the information gain.
+A: Represents a specific attribute (feature) in your data (e.g., Outlook, Temperature, Humidity, Wind in the Play Tennis example).
+Entropy(S): This finds the impurity/randomness of the dataset S, measured using the Entropy function. It reflects how mixed up the classes (Yes/No for playing tennis) are in the entire dataset.
+Σ: This is a summation symbol.
+|S_v|: This represents the number of data points in a specific branch (subset) of the tree created by splitting on attribute A (e.g., the number of days with Sunny outlook).
+|S|: This is the total number of data points in the entire dataset (S).
+Entropy(S_v): This is the Entropy calculated for each branch (subset) S_v created by splitting on attribute A (e.g., Entropy for days with Sunny outlook).
+```
+
+- It measures the reduction in uncertainty about the target variable after a split. The feature with the highest information gain becomes the splitting criterion at that node.
+
+- This process continues recursively, creating branches based on different feature values. Each branch represents a set of data points that share similar characteristics.
+
+- At the terminal nodes (leaves) of the tree, the most frequent class label in that branch becomes the prediction.
+
+Essentially, Information Gain measures the difference in impurity between the entire dataset (S) and the subsets (S_v) created after splitting on a particular attribute (A).  The higher the Information Gain i.e., ``variable who's split can have less impurity/randomness/more counts belong to one class``, the more the chosen attribute (A) helps in separating the data points belonging to different classes (Yes/No for playing tennis).
+
+- `In the essence, |S_v| / |S| i.e., subset count is multiplied with Entropy(S_v) of subset, because it is helps in emphasising, if there is higher entropy with higher subset counts i.e., attribute each unique category counts. Then this multiplication results in high value / higher magnitude, think like penalising the outlier due to having extreme value`.
+
+- `Total Entropy(S) is substracted with above explained emphasised Subset Entropy to see whether subset entropy is lesser than average overall entropy or not. If Entropy(S) - Σ [ |S_v| / |S| * Entropy(S_v) ] results in higher value i.e., +ve, it means Total Entropy(S) (is having higher entropy value) and  Σ [ |S_v| / |S| * Entropy(S_v) ] (is having low entropy value), in other words this subset attribute entropy (i.e., at each unique value of this attribute) is better(less random/certain) than overall uncertainity. Hence this is good attribute for splitting as it is having positive Information gain / Less entropy value than overall Entropy`.
+
+``Entropy``:
+The entropy function in machine learning, particularly in decision trees, measures the uncertainty or randomness within a dataset. It tells you how mixed up the different classes (categories) are in your data.
+Imagine a bag of balls:
+
+- ``Low Entropy``: If the bag only contains red balls, you can be very certain of picking a red ball (low uncertainty).
+- ``High Entropy``: If the bag has a mix of red, blue, and green balls, it's less certain which color you'll pick (high uncertainty).
+- ``Interpretation``: The result is a non-negative number. A value closer to zero indicates high certainty (e.g., all days recommend playing tennis - low entropy). A value closer to 1 (logarithm of 1/2) indicates maximum uncertainty (equal mix of Yes and No recommendations - high entropy).
+- ``Keypoints``: Entropy helps us understand how well our data is separated into distinct classes. It provides a basis for choosing the best features to split on in a decision tree, aiming to reduce uncertainty in each branch.
+
+```
+Entropy(S) = -Σ [p(i) * log2(p(i))]
+
+Σ (sigma symbol): This represents a sum over all possible classes (e.g., Yes/No for playing tennis).
+p(i): This represents the probability of encountering class 'i' (the probability of picking a red, blue, or green ball).
+log2(p(i)): This is a mathematical function (logarithm base 2) that helps penalize very low or very high probabilities. 
+```
+
+Formula understanding
+
+- ``Penalizes Very High and Low Probabilities (log2(p(i)) ~ 1 => 0, or log2(p(i)) ~ 0 => -3.321)``
+    - This makes sense because if a class is very likely, it contributes less to the overall uncertainty, vise-versa if a class is very unlikely, it contributes high to the overall uncertainty. 
+    - In other words, ``if there are 9 red balls and 1 orange ball out 10 balls``
+    - Red class contribute less to randomness/uncertainity to overall randomness of the whole data. As our intention to find how much uncertainity(how many diffetent color counts or all ball colors are same) exists in the overwall data interms of target variable i.e., ball color. 
+    - So here we wanted to penalise or avoid colors which are very certain/high in counts i.e., 0, and want to highlight/emphasise the colors which are very uncertain/rare i.e., -3.321. 
+    - For this we use log2, which serves this purpose. It penalise high probability i.e., 1 / 0.99 / 0.98 .. value as ~0 (as we don't to know about red color where it is already certain), but log2 penalise less probability i.e., 0.1 / 0.2 .. as ~ -3.321 (as we want to know about ex: orange color where it is very rare in the data)
+
+- ``Magnifies Penalised Value by Multiplying``
+    - The logarithm of values less than 1 is negative, and multiplying by the probability strengthens this negative value. This emphasizes the contribution of classes with moderate or lower probabilities to the overall uncertainty.
+    - In other words, complete same color class gets log2(p(var)) = 0 hence results in low uncertainity, but when there is differen color class and different counts out of total counts then this is less < probability 1, which penalises log2 function and results in -ve values and multplying it with probability value of that color(0<p<1) further emphasises its value (if less minus => less effected with multiplication, more minus value => more effected with multiplication) to see which color has more uncertanities.
+```
+lets say target class i.e., color
+
+Ex:- If red 10 = total balls 10
+probability of red color ball => -(1 * math.log2(1)) => -(1 * 0) => 0 => Low uncertainity for red color class
+
+Ex:- If red 9, orange 1 = total balls 10 
+probability of red color ball => -(0.99 * math.log2(0.99)) => 0.014 => Low uncertainity for red color class
+probability of orange color ball => -(0.01 * math.log2(0.01)) => 0.066 => Low uncertainity red color class
+
+Ex:- If red 5, orange 5 = total balls 10
+probability of red color ball => -(0.5 * math.log2(0.5)) => 0.5 => High uncertainity for red color class
+```
+
+``Pros``:
+
+- Easy to interpret: The tree structure visually depicts the decision-making process.
+
+- Handles both categorical and numerical features.
+
+- Can work well with missing data.
+
+``Cons``:
+
+- Prone to overfitting if not carefully tuned.
+
+- Sensitive to small changes in the data.
+
 
 ## <span style='color:orange'> Unsupervised Learning </span>
 
