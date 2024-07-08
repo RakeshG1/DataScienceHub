@@ -9,3 +9,9 @@ pymannkendall
 tsfresh
 ipython
 ipykernel
+dtreeviz # Decision Tree plot
+duckdb # sql query on dataframe
+prophet # forecasting model 
+ruptures # Change point detection
+missingno # missing counts
+tensorflow # for cpu users
