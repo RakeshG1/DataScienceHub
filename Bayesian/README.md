@@ -2,6 +2,10 @@
 
 Bayesian models use Bayes' Theorem to update our beliefs about a parameter based on observed data. These models incorporate both prior knowledge and new evidence.
 
+**`Why Important?`**
+
+It helps estimate parameters like trend and seasonality from the posterior distribution in BSTS forecasting.
+
 ## Key Concepts:
 
 ### Prior:
