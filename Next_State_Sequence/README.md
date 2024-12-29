@@ -2,25 +2,25 @@
 
 ## Markov Chain Model:
 
-**Assumption**: The next state depends only on the current state (memoryless property).
+- **Assumption**: The next state depends only on the current state (memoryless property).
 
-**Use Cases**: Weather prediction, text generation, customer behavior modeling, where future states primarily depend on the immediate past.
+- **Use Cases**: Weather prediction, text generation, customer behavior modeling, where future states primarily depend on the immediate past.
 
 A Markov Chain is a mathematical model that describes a system transitioning between states, where the next state depends only on the current state (not the past history). This is known as the Markov property.
 
 ### How it Works Internally?
 
-**States**: The system has a set of possible states.
+- **States**: The system has a set of possible states.
 
-**Transition Probabilities**: The probability of moving from one state to another is defined in a transition matrix.
+- **Transition Probabilities**: The probability of moving from one state to another is defined in a transition matrix.
 
-**No Memory**: The future state depends only on the current state, making it "memoryless."
+- **No Memory**: The future state depends only on the current state, making it "memoryless."
 
 Use in ML and Bayesian Applications
 
-**Machine Learning**: Used in sequence modeling (e.g., Hidden Markov Models for speech recognition, NLP).
+- **Machine Learning**: Used in sequence modeling (e.g., Hidden Markov Models for speech recognition, NLP).
 
-**Bayesian Inference**: In Bayesian applications, Markov Chain Monte Carlo (MCMC) uses Markov Chains to sample from the posterior distribution when direct computation is challenging.
+- **Bayesian Inference**: In Bayesian applications, Markov Chain Monte Carlo (MCMC) uses Markov Chains to sample from the posterior distribution when direct computation is challenging.
 
 >Note: Primarily a next-state prediction model but can be extended for simple sequence predictions.
 
