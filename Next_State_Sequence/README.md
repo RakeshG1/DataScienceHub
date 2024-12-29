@@ -1,4 +1,4 @@
-# State prediction models
+# Next State & Sequence prediction models
 
 ## Markov Chain Model:
 
