@@ -2,6 +2,10 @@
 
 Data science is the field of study that uses scientific methods, algorithms, and systems to extract knowledge and insights from structured and unstructured data, enabling informed decision-making and predictive analysis across various domains.
 
+## ML (vs) LLM (vs) Generative AI (vs) AI Agents
+
+![alt text](image.png)
+
 ## Statistics
 
 ### Mean
@@ -155,7 +159,7 @@ Significance Level (α) [Rejection region in normla distribution]: This is the p
 P-value (p_val): This is the probability of observing the actual data or something more extreme if the null hypothesis were true.
 Decision Rule: If p_val<α, you reject 𝐻0; otherwise, you fail to reject H0.
 
-In simpler words `there is only 3% probability that studying hours has no effect on exam scores which is less than rejection region limit meanining it enters into extreme cases region, so in other terms says most of the time study hours have effect on exam score, so we reject null hypothesis and accept null hypothesis, saying this is significant variable[study hours] for predicting dependent variable[exam scores]`.
+In simpler words `there is only 3% probability that studying hours has no effect on exam scores which is less than rejection region limit meanining it enters into extreme cases region, so in other terms says most of the time study hours have effect on exam score, so we reject null hypothesis and accept alternative hypothesis, saying this is significant variable[study hours] for predicting dependent variable[exam scores]`.
 
 In mathematical terms, the p-value is obtained from the test statistic (e.g., t-statistic for t-tests, F-statistic for ANOVA) using the probability distribution associated with the test. If the p-value is smaller than α, it suggests that the observed effect is statistically significant, and you reject the null hypothesis in favor of the alternative hypothesis.
 
