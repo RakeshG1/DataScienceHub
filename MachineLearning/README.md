@@ -205,6 +205,55 @@ probability of red color ball => -(0.5 * math.log2(0.5)) => 0.5 => High uncertai
 
 - Sensitive to small changes in the data.
 
+**`Ensembling`**
+
+Ensembling combines predictions from multiple models to create a single, more robust prediction. This is like consulting multiple experts and taking a vote on the final answer.
+
+Ensembling can reduce the variance of a single model, leading to a more stable and generalizable solution. It can also help overcome weaknesses in specific models by leveraging the strengths of others.
+
+**`Bagging`**
+
+It is one of the Ensembling technique. Bagging, also known as Bootstrap Aggregation, focuses on reducing the variance of a model. It creates multiple copies (usually with replacement) of the training data. Then, a model (often a decision tree) is trained on each unique dataset. Finally, the predictions from all the models are aggregated (usually by averaging for classification) to make the final prediction.
+
+Anology: You consult multiple independent detectives (models). Each detective investigates a slightly different set of clues (data subsets) and presents their findings (predictions). You then combine their insights (average the predictions) to reach a final conclusion. This reduces the chance of a single detective missing crucial information.
+
+Pros: A good starting point for improving model stability, especially with limited or noisy data. Bagging specifically targets reducing variance for a more stable model.
+
+#### Random Forest
+
+- Handles non-linear relationships, missing values, and outliers.
+- Random Forests, XGBoost, or decision trees, these models inherently calculate feature importance scores during training. The scores measure how much each feature splits the data at each node in the tree, indicating its influence on the final predictions
+
+When to Use
+
+- **Non-linear Relationships:** Random Forest is ideal for capturing complex non-linear relationships between features and the target variable.
+- **Robustness:** It is robust to overfitting and works well even if there are noisy features or missing data.
+- **Feature Importance:** If you need insights into feature importance, Random Forest can provide that.
+- **Medium to Large Datasets:** It handles larger datasets well.
+
+Anology,
+
+Imagine you are working on a dataset to classify different species of flowers based on various measurements like petal length, petal width, etc. The relationships between these measurements and species classification are likely non-linear and complex. Random Forest would be a good choice because it can handle this complexity and provide insights into which measurements are most important for classification.
+
+Psuedo Logic,
+
+Training
+
+* Step1: Create boostrapped dataset, same size as original dataset, but with randomly selected samples from original dataset, which can duplicated too.
+* Step2: Creating Decision Tree on each of this bootstrapped dataset, where instead of going with all columns of original dataset, we consider any random subset of columns for determing splits in this decision tree, like this it will be done in all bootstrapped decision tree's
+* Step3: Samples which didn't went into bootstrapped data set considered as Out of bag samples, these can leveraged as Test data, to evaluate Random Forest model accuracy through above steps 1 & 2. If out of bag error is minor then we finalise Random Forest model or repat steps 1 & 2 again by changing in bootstrap dataset selection randomly again with duplications and selecting other random columns and also by increasing or decreasing random columns count for preparing each decision tree in Random forest.  
+
+Note: As each decision tree is created randomly it makes sense to be called as Random Forest, each tree is completly different from other.
+
+Prediction
+
+A new sample will checked in all decision tree's = ensembled trees = random forest, and at final we aggregate predictions from all tree and check the vote for prediction class. The class which got highest votes get selected as final prediction.
+
+High Bias: This occurs when your model is too simple and cannot capture the underlying patterns in your data. It results in consistently inaccurate predictions, regardless of the number of trees in the forest.
+
+- Low Bias: By combining multiple trees, the forest captures a wider range of patterns in the data, reducing the overall bias compared to a single decision tree.
+- Reduced Variance: The randomness introduced during tree building (e.g., randomly selecting features at each split) helps to average out the individual trees' high variance, leading to more stable and generalizable predictions.
+
 
 ## <span style='color:orange'> Unsupervised Learning </span>
 
@@ -295,3 +344,41 @@ yt = 1/n (sum i->n (yti+1))
 ```text
 yt = ß0 + ß1x1 + et
 ```
+
+Time series smoothing is a technique used to remove noise from a time series dataset to better reveal the underlying trends and patterns. This process helps in making more accurate forecasts and analyses by highlighting the signal in the data while reducing the effects of random fluctuations.
+
+Why Time Series Smoothing is Important
+
+1. **Noise Reduction**:
+   - Time series data often contains random noise, which can obscure the true underlying patterns. Smoothing helps to filter out this noise, making it easier to see trends and cycles.
+
+2. **Trend Identification**:
+   - Smoothing allows for the identification of long-term trends in the data. This is crucial for making long-term forecasts and strategic decisions based on the direction in which the data is moving.
+
+3. **Seasonality Detection**:
+   - Many time series data have seasonal patterns. Smoothing can help to separate these seasonal effects from the overall trend, making it easier to understand and predict seasonal variations.
+
+4. **Improved Forecast Accuracy**:
+   - By focusing on the underlying signal rather than the noise, smoothing can improve the accuracy of forecasting models. This leads to more reliable predictions and better planning.
+
+5. **Data Visualization**:
+   - Smoothing makes time series data easier to visualize. Smooth curves and lines are simpler to interpret and analyze compared to jagged, noisy data points.
+
+Common Smoothing Techniques
+
+1. **Moving Average**:
+   - A simple technique that averages the data points within a fixed window, sliding this window along the time series to produce a smoothed curve.
+
+2. **Exponential Smoothing**:
+   - Assigns exponentially decreasing weights to past observations, making recent observations more influential in the smoothed value.
+
+3. **LOESS (Locally Estimated Scatterplot Smoothing)**:
+   - A non-parametric method that fits multiple regressions in local neighborhoods of the data points, providing a flexible approach to smoothing.
+
+4. **Gaussian Smoothing**:
+   - Uses a Gaussian function to weigh the data points, providing a smooth curve that can handle varying levels of noise.
+
+5. **Kalman Filtering**:
+   - An advanced technique that uses a series of measurements observed over time, containing statistical noise and other inaccuracies, and produces estimates of unknown variables.
+
+
