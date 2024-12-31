@@ -2,6 +2,8 @@
 
 SSMs help estimate hidden true states (e.g., car position) from noisy observations, making them crucial in control systems, robotics, and financial modeling. 
 
+>Note: State Space Models use a formula for state transitions, and Kalman Filters are used to smooth and refine the estimate of expected future movements, handling noise for a more accurate prediction.
+
 Use cases include:
 
 - `Self-driving cars`: Tracking vehicles and pedestrians.
